@@ -37,7 +37,7 @@ def copy_table_to_hdfs(hdfs_output, table_name, partition,num_parts):
     execute("%s -mkdir -p %s/%s" % (HDFS_CMD, hdfs_output, table_name))
     execute("%s -copyFromLocal -f %s %s" % (HDFS_CMD, local_file_name, hdfs_file_name))
 
-def execute(cmd,retry=10):
+def execute(cmd,retry=100):
     if(retry<0):
         sys.exit(1)
 
