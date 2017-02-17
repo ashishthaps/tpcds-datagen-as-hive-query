@@ -1,5 +1,8 @@
 # tpcds-datagen-as-hive-query
-Generate TPCDS data using hive query
+Generate TPCDS data using hive query.
+
+
+Below are are the 2 examples of generating and querying TPCDS data. First one use Hive CLI and 2nd use Beeline. Beeline will give you faster performance.   
 
 ##How to use with Hive CLI
 1. Clone this repo.
