@@ -40,6 +40,7 @@ Generate TPCDS data using hive query
 1. Clone this repo.
 
     ```shell
+    buobu
     git clone https://github.com/dharmeshkakadia/tpcds-datagen-as-hive-query/ && cd tpcds-datagen-as-hive-query
     ```
 
@@ -50,7 +51,7 @@ Generate TPCDS data using hive query
     
 3. Run TPCDSDataGen.hql with settings.hql file and set the required config variables.
     ```shell
-    beeline -u "jdbc:hive2://`hostname -f`:10001/;transportMode=http" -n "" -p "" -i settings.hql -f TPCDSDataGen.hql -hiveconf SCALE=10 -hiveconf PARTS=10 -hiveconf LOCATION=/HiveTPCDS/ -hiveconf TPCHBIN=`grep -A 1 "fs.defaultFS" /etc/hadoop/conf/core-site.xml | grep -o "wasb[^<]*"`/tmp/resources  
+    beeline -u "jdbc:hive2://`hostname -f`:10001/;transportMode=http" -n "" -p "" -i settings.hql -f TPCDSDataGen.hql -hiveconf SCALE=100 -hiveconf PARTS=100 -hiveconf LOCATION=/HiveTPCDS/ -hiveconf TPCHBIN=`grep -A 1 "fs.defaultFS" /etc/hadoop/conf/core-site.xml | grep -o "wasb[^<]*"`/tmp/resources  
     ```
        Here, 
     
