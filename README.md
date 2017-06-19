@@ -8,42 +8,6 @@ Goal of this project is to help generate TPCDS data with hive and create your ow
 4. Presto
 
 
-## How to use with Hive CLI
-
-1. Clone this repo.
-
-    ```shell
-    git clone https://github.com/hdinsight/tpcds-datagen-as-hive-query/ && cd tpcds-datagen-as-hive-query
-    ```
-2. Run TPCDSDataGen.hql with settings.hql file and set the required config variables.
-    ```shell
-    hive -i settings.hql -f TPCDSDataGen.hql -hiveconf SCALE=10 -hiveconf PARTS=10 -hiveconf LOCATION=/HiveTPCDS/ -hiveconf TPCHBIN=resources 
-    ```
-    Here, 
-    
-    `SCALE` is a scale factor for TPCDS. Scale factor 10 roughly generates 10 GB data, Scale factor 1000 generates 1 TB of data and so on.
-    
-    `PARTS` is a number of task to use for datagen (parrellelization). This should be set to the same value as `SCALE`. 
-    
-    `LOCATION` is the directory where the data will be stored on HDFS. 
-    
-    `TPCHBIN` is where the resources are found. You can specify specific settings in settings.hql file.
-
-3. Now you can create tables on the generated data.
-    ```shell
-    hive -i settings.hql -f ddl/createAllExternalTables.hql -hiveconf LOCATION=/HiveTPCDS/ -hiveconf DBNAME=tpcds
-    ```
-    Generate ORC tables and analyze
-    ```shell
-    hive -i settings.hql -f ddl/createAllORCTables.hql -hiveconf ORCDBNAME=tpcds_orc -hiveconf SOURCE=tpcds
-    hive -i settings.hql -f ddl/analyze.hql -hiveconf ORCDBNAME=tpcds_orc 
-    ```
-
-4. Run the queries !
-    ```shell
-    hive -database tpcds_orc -i settings.hql -f queries/query12.sql 
-    ```
-
 ## How to use with Beeline CLI
 
 1. Clone this repo.
